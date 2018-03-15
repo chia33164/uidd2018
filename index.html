@@ -1,1 +1,177 @@
-hahaHaHa
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport"  content = "width = device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+      body {
+        background-color: rgb(193,232,255);
+      }
+
+      #part1 {
+        border-radius : 0px 10px 0px 0px;
+        background: rgb(70,158,128);
+        padding: 20px;
+        width: 220px;
+        height: 500px;
+        position: absolute;
+        left:1200px ; top: 130px;
+  `
+      }
+      #part2 {
+        border-radius : 10px 0px 0px 0px;
+        background: rgb(60,179,113);
+        padding: 20px;
+        width: 800px;
+        height: 500px;
+        position: absolute;
+        left:400px; top:130px;
+      }
+      #part3 {
+        border-radius : 0px 0px 10px 10px;
+        background: rgb(230,249,255);
+        padding: 20px;
+        width: 1020px;
+        height: 200px;
+        position: absolute;
+        left:400px; top: 630px;
+      }
+
+      .running {
+        position: absolute;
+        left : 400px; top:810px;      
+      }
+
+
+      .circle1 {
+        position: absolute;
+        left : 450px; top: 625px;
+
+      
+      }
+      .circle-chart1 {
+        animation : filling 2s reverse;
+        transform: rotate(135deg);
+        transform-origin: center;
+      
+      }
+
+      .circle2 {
+        position: absolute;
+        left : 700px; top: 625px;
+
+      
+      }
+      .circle-chart2 {
+        animation : filling 2s reverse;
+        transform: rotate(135deg);
+        transform-origin: center;
+      
+      }
+      .circle3 {
+        position: absolute;
+        left : 950px; top: 625px;
+
+      
+      }
+      .circle-chart3 {
+        animation : filling 2s reverse;
+        transform: rotate(135deg);
+        transform-origin: center;
+      
+      }
+
+      @keyframes filling {
+        to { stroke-dasharray: 0 100; }
+      }
+
+      html {
+        font-family: sans-serif;
+      }
+      
+      #love {
+        color: rgb(255,91,71);
+        font-family:fantasy;
+        font-size: 50px;
+        position: absolute;
+        left: 525px; top:680px;
+      }
+       #club {
+        color: rgb(70,124,154);
+        font-family:fantasy;
+        font-size: 50px;
+        position: absolute;
+        left: 775px; top:680px;
+      }
+       #study {
+        color: rgb(70,191,154);
+        font-family:fantasy;
+        font-size: 50px;
+        position: absolute;
+        left: 1010px; top:680px;
+      }
+
+
+    </style>
+  </head>
+  <body>
+
+    <p id = "part1"></p>
+    <p id = "part2"></p>
+    <p id = "part3"></p>
+    <p id="love">love</p>
+    <p id="club">club</p>
+    <p id="study">study</p>
+    
+    
+
+    
+    <marquee class="running"  direction="left" height="30" width="1020" scrollamount="15" >welcome to chia's self introduction hahahahahahahahahahhahahahhahahahahahaha</marquee>
+    <marquee class="photo" direction = "left" behavior="slide" scrollamount="100" width="150"><img ></marquee>
+      <i class = "glyphicon glyphicon-user" 
+        style = "font-size:30px; 
+        position: absolute;
+        top : 200px; left: 1230px; 
+        color: rgb(193,232,255);" ><marquee direction = "left" behavior="slide" scrollamount="100" width="150"> Chia  </marquee></i>
+
+      <i class = "glyphicon glyphicon-thumbs-up" 
+        style = "font-size:30px; 
+        position: absolute;
+        top : 300px; left: 1230px; 
+        color: rgb(193,232,255);"><marquee direction = "left" behavior="slide" scrollamount="100" width="150"> baskestball</marquee></i>
+
+      <i class = "glyphicon glyphicon-thumbs-up" 
+        style = "font-size:30px; position: absolute;
+        top : 400px; left: 1230px; 
+        color: rgb(193,232,255);"><marquee direction = "left" behavior="slide" scrollamount="100" width="150"> music </marquee></i>
+
+      <i class = "glyphicon glyphicon-thumbs-up" 
+        style = "font-size:30px; 
+        position: absolute;
+        top : 500px; left: 1230px; 
+        color: rgb(193,232,255);"><marquee direction = "left" behavior="slide" scrollamount="100" width="150" height="40"> dancing </marquee></i>
+
+      <svg  class = "circle1" viewbox="0 0 45 45" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+        <circle  class="circle-chart3"
+          stroke="rgb(255,91,71)" stroke-width="4" stroke-dasharray="75,100" 
+          stroke-linecap="round" fill="none"  cx="19.5" cy="19.5" r="16" />
+        
+      </svg>
+
+      <svg  class = "circle2" viewbox="0 0 45 45" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+        <circle  class="circle-chart3"
+          stroke="rgb(70,124,154)" stroke-width="4" stroke-dasharray="75,100" 
+          stroke-linecap="round" fill="none"  cx="19.5" cy="19.5" r="16" />
+        
+      </svg>
+
+      <svg  class = "circle3" viewbox="0 0 45 45" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+        <circle  class="circle-chart3"
+          stroke="rgb(70,191,154)" stroke-width="4" stroke-dasharray="75,100" 
+          stroke-linecap="round" fill="none"  cx="19.5" cy="19.5" r="16" />
+        
+      </svg>
+
+
+  </body>
+</html>
