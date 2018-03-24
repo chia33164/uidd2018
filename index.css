@@ -1,0 +1,111 @@
+
+  #part1 {
+    border-radius : 0px 10px 0px 0px;
+    background: rgb(70,158,128);
+    padding: 20px;
+    grid-area: partRight ;
+  }
+  #part2 {
+    border-radius : 10px 0px 0px 0px;
+    background: rgb(60,179,113);
+    padding: 20px;
+    grid-area: partLeft ;
+  }
+  #part3 {
+    border-radius : 0px 0px 10px 10px;
+    background: rgb(230,249,255);
+    padding: 20px;
+    grid-area: partbottom ;
+  }
+
+  #chia {
+    font-family:fantasy;
+    font-size: 50px;
+    color: rgb(193,232,255); 
+    grid-area: chia;
+  }
+
+  #me {
+      display: block;
+      width: 280px;
+      height: auto;
+      grid-area: img;
+  }
+
+  #face {
+    display: block;
+      width: 50px;
+      height: auto;
+      transform: translate(200%,200%);
+    grid-area: face;
+  }
+
+  .circle-chart {
+    animation : filling 2s reverse;
+    transform: rotate(135deg);
+    transform-origin: center;
+  }
+/*
+  #btm5 { color: rgb(255,91,71);}
+  #btm6 { color: rgb(70,124,154);}
+  #btm7 { color: rgb(70,191,154);}
+*/
+  .circle1 {grid-area: cirleft;}
+  .circle2 {grid-area: cirmid;}
+  .circle3 {grid-area: cirright;}
+
+  @keyframes filling {
+    to { stroke-dasharray: 0 100; }
+  }
+
+  html {
+    font-family: sans-serif;
+  }
+  
+  .text {
+    font-family:fantasy;
+    font-size: 50px;
+  }
+  
+  #part1 {
+    text-align:center;
+    display:grid;
+    grid-template-areas:
+    'one'
+    'two'
+    'thr'
+    'four';
+   }
+
+   #part2 {
+    display:grid;
+    grid-template-areas:
+    'chia chia chia img'
+    'chia chia chia img'
+    'chia chia chia img';
+   }
+
+   #part3 {
+    display:grid;
+    grid-template-areas:
+    'cirleft cirmid cirright face';
+   }
+
+  body {
+    background-color: rgb(190,232,255); 
+    transform: translate(10%);
+    height: 50em;
+    width: 90em;
+    display: grid;
+    grid-template-areas: 
+    'partLeft partLeft partLeft partLeft partRight'
+    'partLeft partLeft partLeft partLeft partRight'
+    'partLeft partLeft partLeft partLeft partRight'
+    'partLeft partLeft partLeft partLeft partRight'
+    'partLeft partLeft partLeft partLeft partRight'
+    'partLeft partLeft partLeft partLeft partRight'
+    'partbottom partbottom partbottom partbottom partbottom'
+    'partbottom partbottom partbottom partbottom partbottom' ;
+
+    padding: 50px;
+  }
