@@ -1,0 +1,64 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: gray;
+    background-image: url(bg.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size:cover; 
+}
+
+#interview {
+    position: absolute;
+    left: 250px;
+    bottom: 50px;
+}
+
+#time {
+    position: absolute;
+    width: 300px;
+    height: auto;
+    top: 80px;
+    left: 655px;
+}
+
+#ground {
+    position: absolute;
+    width: 300px;
+    height: auto;
+    bottom: 80px;
+    right: 180px;
+}
+
+#large {
+    position: absolute;
+    width: 250px;
+    height: auto;
+    bottom: 250px;
+    right: 205px;
+}
+
+#mid {
+    position: absolute;
+    width: 175px;
+    height: auto;
+    bottom: 288px;
+    right: 242px;
+}
+
+#small {
+    position: absolute;
+    width: 100px;
+    height: auto;
+    bottom: 325px;
+    right: 280px;
+}
+
+#www {
+    position: absolute;
+    width: 95px;
+    height: auto;
+    bottom: 180px;
+    right: 278px;
+}
