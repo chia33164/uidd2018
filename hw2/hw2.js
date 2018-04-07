@@ -11,8 +11,7 @@ function initPhotos() {
 
     //控制放開滑鼠右鍵時停止轉動
     $(document).mouseup( stopRotate );
-    $(".burn img").each( function(index){
-
+    $(".burn").each( function(index){
         // 替圖片設定隨機的位子跟角度
         var angle= Math.floor( Math.random() * 360 );
         $(this).css( 'transform' , 'rotate(' + angle + 'deg)');
