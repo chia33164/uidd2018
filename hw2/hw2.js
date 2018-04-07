@@ -1,105 +1,109 @@
 $(document).ready(function(){
-  
-    var imageBeingRotated = false ;
-    var mouseStartAngle = false ; //旋轉開始前鼠標相對於圖片中心的角度
-    var imageStartAngle = false ; //旋轉開始前圖片的旋轉角度
+	var imageBeingRotated = false;  
+	var mouseStartAngle = false;  //在旋轉前鼠標和圖片中心的相對位置
+	var imageStartAngle = false;  //在旋轉前圖片的旋轉角度
+	
+	$(initCircles);
+	
+});
 
-    $( initPhotos );
-})
 
-function initPhotos() {
-
-    //控制放開滑鼠右鍵時停止轉動
-    $(document).mouseup( stopRotate );
-    $(".burn").each( function(index){
-        // 替圖片設定隨機的位子跟角度
-        var angle= Math.floor( Math.random() * 360 );
-        $(this).css( 'transform' , 'rotate(' + angle + 'deg)');
-        $(this).css( '-moz-transform' , 'rotate(0' + angle + 'deg)' );
-        $(this).css( '-webkit-transform', 'rotate(' + angle + 'deg)' );
-        $(this).css( '-o-transform', 'rotate(' + angle + 'deg)' );
-        $(this).data( 'currentRotate', angle * Math.PI/180 ); //弧度=pi*角度/180
-
-        //讓圖片旋轉
-        $(this).mousedown( startRotate );
-    })    
-}
+function initCircles(){
+    //控制放開滑鼠右鍵時將停止轉動
+    $(document).mouseup(stopRotate);
+    //處理每個圖片旋轉時的狀態
+	$(".burn").each(	function(index){
+	//隨機擺放每個圖片的角度
+	
+		var angle = Math.floor( Math.random() * 360  );
+		
+		$(this).css( 'transform', 'rotate(' + angle + 'deg)' );   
+		$(this).css( '-moz-transform', 'rotate(' + angle + 'deg)' );   
+		$(this).css( '-webkit-transform', 'rotate(' + angle + 'deg)' );
+		$(this).css( '-o-transform', 'rotate(' + angle + 'deg)' );
+		$(this).data('currentRotation', angle * Math.PI / 180 );//弧度=pi*角度/180
+		
+		//讓圖片開始旋轉
+		$(this).mousedown( startRotate );
+	
+	});
+};
 
 function startRotate( e ) {
 
  
-    // Track the image that we're going to rotate
-    imageBeingRotated = this;
+  // 指定要旋轉的圖片
+  imageBeingRotated = this;
+
+  // 在旋轉前儲存鼠標相對圖片中心的角度
+  var imageCenter = getImageCenter( imageBeingRotated );
+  var mouseStartXFromCenter = e.pageX - imageCenter[0];
+  var mouseStartYFromCenter = e.pageY - imageCenter[1];
+  mouseStartAngle = Math.atan2( mouseStartYFromCenter, mouseStartXFromCenter );
+
+  // 儲存圖片當前的旋轉角度
+  imageStartAngle = $(imageBeingRotated).data('currentRotation');
+
+  // 設定當鼠標移動時就旋轉圖像
+  $(document).mousemove( rotateImage );
+	// 阻止其他會影響到此事件的事件發生
+  return false;
+}
+
+function stopRotate( e ) {
+    //確認是否是正在旋轉的狀態，如果否就return
+  if ( !imageBeingRotated ) return;
+
+  // 解除mousemove的功能
+  $(document).unbind( 'mousemove' );
+
+  // 取消選取要旋轉的圖片
+  imageBeingRotated = false;
+  return false;
+}
+function rotateImage( e ) {
+
+  // 確認是否是正在旋轉的狀態，如果否就return
+  if ( !imageBeingRotated ) return;
+
+  // 在旋轉後儲存鼠標相對圖片中心的角度
+  var imageCenter = getImageCenter( imageBeingRotated );
+  var mouseXFromCenter = e.pageX - imageCenter[0];
+  var mouseYFromCenter = e.pageY - imageCenter[1];
+  var mouseAngle = Math.atan2( mouseYFromCenter, mouseXFromCenter );
+
+  // 計算圖片要旋轉到幾度的位置
+  var rotateAngle = mouseAngle - mouseStartAngle + imageStartAngle;
+
+  // 旋轉圖片到新的角度並儲存新的角度
+  $(imageBeingRotated).css('transform','rotate(' + rotateAngle + 'rad)');
+  $(imageBeingRotated).css('-moz-transform','rotate(' + rotateAngle + 'rad)');
+  $(imageBeingRotated).css('-webkit-transform','rotate(' + rotateAngle + 'rad)');
+  $(imageBeingRotated).css('-o-transform','rotate(' + rotateAngle + 'rad)');
+  $(imageBeingRotated).data('currentRotation', rotateAngle );
   
-    // Store the angle of the mouse at the start of the rotation
-    var imageCenter = getImageCenter( imageBeingRotated );
-    var mouseStartXFromCenter = e.pageX - imageCenter[0];
-    var mouseStartYFromCenter = e.pageY - imageCenter[1];
-    mouseStartAngle = Math.atan2( mouseStartYFromCenter, mouseStartXFromCenter );
-  
-    // Store the current rotation angle of the image at the start of the rotation
-    imageStartAngle = $(imageBeingRotated).data('currentRotation');
-  
-    // Set up an event handler to rotate the image as the mouse is moved
-    $(document).mousemove( rotateImage );
-      // stop bubbling
-    return false;
-  }
-  // stop rotating while mouse is up
-  function stopRotate( e ) {
-   
-    if ( !imageBeingRotated ) return;
-  
-    // Remove the event handler that tracked mouse movements during the rotation
-    $(document).unbind( 'mousemove' );
-  
-    // Cancel the image rotation by setting imageBeingRotated back to false.
-    imageBeingRotated = false;
-    return false;
-  }
-  function rotateImage( e ) {
-  
-    // Exit if there is no image being rotated
-    if ( !imageBeingRotated ) return;
-  
-    // Calculate the new mouse angle relative to the image center
-    var imageCenter = getImageCenter( imageBeingRotated );
-    var mouseXFromCenter = e.pageX - imageCenter[0];
-    var mouseYFromCenter = e.pageY - imageCenter[1];
-    var mouseAngle = Math.atan2( mouseYFromCenter, mouseXFromCenter );
-  
-    // Calculate the new rotation angle for the image
-    var rotateAngle = mouseAngle - mouseStartAngle + imageStartAngle;
-  
-    // Rotate the image to the new angle, and store the new angle
-    $(imageBeingRotated).css('transform','rotate(' + rotateAngle + 'rad)');
-    $(imageBeingRotated).css('-moz-transform','rotate(' + rotateAngle + 'rad)');
-    $(imageBeingRotated).css('-webkit-transform','rotate(' + rotateAngle + 'rad)');
-    $(imageBeingRotated).css('-o-transform','rotate(' + rotateAngle + 'rad)');
-    $(imageBeingRotated).data('currentRotation', rotateAngle );
-    
-    return false;
-  }
-  function getImageCenter( image ) {
-  
-    // Rotate the image to 0 radians
-    $(image).css('transform','rotate(0rad)');
-    $(image).css('-moz-transform','rotate(0rad)');
-    $(image).css('-webkit-transform','rotate(0rad)');
-    $(image).css('-o-transform','rotate(0rad)');
-  
-    // Measure the image center
-    var imageOffset = $(image).offset();
-    var imageCenterX = imageOffset.left + $(image).width() / 2;
-    var imageCenterY = imageOffset.top + $(image).height() / 2;
-  
-    // Rotate the image back to its previous angle
-    var currentRotation = $(image).data('currentRotation');
-    $(imageBeingRotated).css('transform','rotate(' + currentRotation + 'rad)');
-    $(imageBeingRotated).css('-moz-transform','rotate(' + currentRotation + 'rad)');
-    $(imageBeingRotated).css('-webkit-transform','rotate(' + currentRotation + 'rad)');
-    $(imageBeingRotated).css('-o-transform','rotate(' + currentRotation + 'rad)');
-  
-    // Return the calculated center coordinates
-    return Array( imageCenterX, imageCenterY );
-  }
+  return false;
+}
+function getImageCenter( image ) {
+
+  // 先旋轉圖片成正的
+  $(image).css('transform','rotate(0rad)');
+  $(image).css('-moz-transform','rotate(0rad)');
+  $(image).css('-webkit-transform','rotate(0rad)');
+  $(image).css('-o-transform','rotate(0rad)');
+
+  // 計算圖片中心
+  var imageOffset = $(image).offset(); //offset()可以得到圖片左上方角角的座標
+  var imageCenterX = imageOffset.left + $(image).width() / 2;
+  var imageCenterY = imageOffset.top + $(image).height() / 2;
+
+  // 旋轉圖片到原本的角度
+  var currentRotation = $(image).data('currentRotation');
+  $(imageBeingRotated).css('transform','rotate(' + currentRotation + 'rad)');
+  $(imageBeingRotated).css('-moz-transform','rotate(' + currentRotation + 'rad)');
+  $(imageBeingRotated).css('-webkit-transform','rotate(' + currentRotation + 'rad)');
+  $(imageBeingRotated).css('-o-transform','rotate(' + currentRotation + 'rad)');
+
+  // Return 圖片中的的座標
+  return Array( imageCenterX, imageCenterY );
+}
