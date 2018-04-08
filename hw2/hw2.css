@@ -11,16 +11,24 @@ body {
 
 #interview {
     position: absolute;
-    left: 250px;
-    bottom: 50px;
+    left: 18%;
+    bottom: 6%;
 }
 
 #time {
     position: absolute;
     width: 300px;
     height: auto;
-    top: 80px;
-    left: 655px;
+    top: 15%;
+    left: 44.5%;
+}
+
+#light {
+    position: absolute;
+    width: 300px;
+    height: auto;
+    bottom: 80px;
+    right: 180px;
 }
 
 #ground {
