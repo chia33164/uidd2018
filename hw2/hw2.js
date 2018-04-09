@@ -58,7 +58,7 @@ function startRotate( e ) {
         ((Math.abs(midd - smalld) <= 0.2) || (Math.abs(midd - smalld) >= 6.25))){
       $(".back").animate({opacity: '0'});
       $(".burn").animate({opacity: '0'});
-      setTimeout("document.location.href='file:///home/chia/Desktop/uidd2018/hw2/hw2_2/index.html'",2000);
+      setTimeout("document.location.href='https://ire33164.github.io/uidd2018/hw2/hw2_2/'",2000);
       judge=100;
     }
   }
