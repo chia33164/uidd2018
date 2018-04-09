@@ -59,6 +59,7 @@ function startRotate( e ) {
       $(".back").animate({opacity: '0'});
       $(".burn").animate({opacity: '0'});
       setTimeout("document.location.href='https://ire33164.github.io/uidd2018/hw2/hw2_2/'",2000);
+      
       judge=100;
     }
   }
