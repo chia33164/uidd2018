@@ -58,7 +58,8 @@ function startRotate( e ) {
         ((Math.abs(midd - smalld) <= 0.2) || (Math.abs(midd - smalld) >= 6.25))){
       $(".back").animate({opacity: '0'});
       $(".burn").animate({opacity: '0'});
-      judge = 100;
+      setTimeout("document.location.href='file:///home/chia/Desktop/uidd2018/hw2/hw2_2/turn.html'",3000);
+      judge=100;
     }
   }
   console.log(Math.abs(larged - midd));
